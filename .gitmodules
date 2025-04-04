@@ -1,3 +1,6 @@
 [submodule "rtl/f_to_f"]
 	path = rtl/f_to_f
 	url = https://github.com/vicharak-in/f_to_f.git
+[submodule "rtl/cordic"]
+	path = rtl/cordic
+	url = https://github.com/vicharak-in/cordic.git
