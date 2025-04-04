@@ -7,3 +7,6 @@
 [submodule "rtl/square_root"]
 	path = rtl/square_root
 	url = https://github.com/vicharak-in/square_root.git
+[submodule "rtl/divider"]
+	path = rtl/divider
+	url = https://github.com/vicharak-in/divider_core.git
