@@ -4,3 +4,6 @@
 [submodule "rtl/cordic"]
 	path = rtl/cordic
 	url = https://github.com/vicharak-in/cordic.git
+[submodule "rtl/square_root"]
+	path = rtl/square_root
+	url = https://github.com/vicharak-in/square_root.git
