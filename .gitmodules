@@ -10,3 +10,6 @@
 [submodule "rtl/divider"]
 	path = rtl/divider
 	url = https://github.com/vicharak-in/divider_core.git
+[submodule "rtl/rah"]
+	path = rtl/rah
+	url = https://github.com/vicharak-in/rah-bit.git

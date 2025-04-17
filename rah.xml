@@ -7,16 +7,16 @@
     </efx:device_info>
     <efx:design_info def_veri_version="verilog_2k" def_vhdl_version="vhdl_2008">
         <efx:top_module name="top"/>
-        <efx:design_file name="rtl/rah_encoder.v" version="default" library="default"/>
-        <efx:design_file name="rtl/video_gen.v" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/rah_encoder.v" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/video_gen.v" version="default" library="default"/>
         <efx:design_file name="rtl/top.v" version="default" library="default"/>
-        <efx:design_file name="rtl/example.v" version="default" library="default"/>
-        <efx:design_file name="rtl/rah_var_defs.vh" version="default" library="default"/>
-        <efx:design_file name="rtl/rah_decoder.v" version="default" library="default"/>
-        <efx:design_file name="rtl/uart.v" version="default" library="default"/>
-        <efx:design_file name="rtl/rrq.v" version="default" library="default"/>
-        <efx:design_file name="rtl/data_aligner.v" version="default" library="default"/>
-        <efx:design_file name="rtl/rah_version_check.v" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/example.v" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/rah_var_defs.vh" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/rah_decoder.v" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/uart.v" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/rrq.v" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/data_aligner.v" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/rah_version_check.v" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>
     </efx:design_info>
     <efx:constraint_info>
