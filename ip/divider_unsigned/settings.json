@@ -1,0 +1,56 @@
+{
+    "args": [
+        "-o",
+        "divider_unsigned",
+        "--base_path",
+        "/home/neel/Downloads/calc10/calcx/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "arithmetic",
+            "name": "efx_divider",
+            "version": "5.2"
+        }
+    ],
+    "conf": {
+        "NREPRESENTATION": "\"UNSIGNED\"",
+        "WIDTHN": "32",
+        "WIDTHD": "32",
+        "DREPRESENTATION": "\"UNSIGNED\"",
+        "PIPELINE": "1'b1",
+        "LATENCY": "8"
+    },
+    "output": {
+        "external_source_source": [
+            "divider_unsigned/divider_unsigned_tmpl.v",
+            "divider_unsigned/divider_unsigned_tmpl.vhd",
+            "divider_unsigned/divider_unsigned_define.vh",
+            "divider_unsigned/divider_unsigned.v"
+        ],
+        "external_example_example": [
+            "divider_unsigned/T20F256_devkit/demo_divider.v",
+            "divider_unsigned/T20F256_devkit/example_divider_T20.sdc",
+            "divider_unsigned/T20F256_devkit/divider_unsigned.v",
+            "divider_unsigned/T20F256_devkit/divider_unsigned_define.vh",
+            "divider_unsigned/T20F256_devkit/divider.peri.xml",
+            "divider_unsigned/T20F256_devkit/divider.xml"
+        ],
+        "external_example_2": [
+            "divider_unsigned/Ti60F225_devkit/demo_divider.v",
+            "divider_unsigned/Ti60F225_devkit/example_divider_Ti60.sdc",
+            "divider_unsigned/Ti60F225_devkit/divider_unsigned.v",
+            "divider_unsigned/Ti60F225_devkit/divider_unsigned_define.vh",
+            "divider_unsigned/Ti60F225_devkit/divider.peri.xml",
+            "divider_unsigned/Ti60F225_devkit/divider.xml"
+        ],
+        "external_testbench_testbench": [
+            "divider_unsigned/Testbench/tb_divider.v",
+            "divider_unsigned/Testbench/demo_divider.v",
+            "divider_unsigned/Testbench/modelsim.do",
+            "divider_unsigned/Testbench/divider_unsigned.v",
+            "divider_unsigned/Testbench/divider_unsigned_define.vh"
+        ]
+    },
+    "sw_version": "2024.2.294",
+    "generated_date": "2025-04-18T04:39:34.061387+00:00"
+}
