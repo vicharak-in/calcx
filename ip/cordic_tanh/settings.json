@@ -1,0 +1,36 @@
+{
+    "args": [
+        "-o",
+        "cordic_tanh",
+        "--base_path",
+        "/home/neel/Downloads/calc10/calcx/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "arithmetic",
+            "name": "efx_cordic",
+            "version": "5.1"
+        }
+    ],
+    "conf": {
+        "MODE": "5"
+    },
+    "output": {
+        "external_source_source": [
+            "cordic_tanh/cordic_tanh_tmpl.v",
+            "cordic_tanh/cordic_tanh.v",
+            "cordic_tanh/cordic_tanh_define.vh",
+            "cordic_tanh/cordic_tanh_tmpl.vhd"
+        ],
+        "external_testbench_testbench": [
+            "cordic_tanh/Testbench/tb_tanh.v",
+            "cordic_tanh/Testbench/run.sh",
+            "cordic_tanh/Testbench/run.bat",
+            "cordic_tanh/Testbench/cordic_tanh.v",
+            "cordic_tanh/Testbench/cordic_tanh_define.vh"
+        ],
+        "external_script_generator": []
+    },
+    "sw_version": "2024.2.294",
+    "generated_date": "2025-04-18T04:34:34.729566+00:00"
+}
