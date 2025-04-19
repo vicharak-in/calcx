@@ -1,0 +1,36 @@
+{
+    "args": [
+        "-o",
+        "cordic_sqrt",
+        "--base_path",
+        "/home/neel/Downloads/calc10/calcx/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "arithmetic",
+            "name": "efx_cordic",
+            "version": "5.1"
+        }
+    ],
+    "conf": {
+        "MODE": "8"
+    },
+    "output": {
+        "external_source_source": [
+            "cordic_sqrt/cordic_sqrt_tmpl.v",
+            "cordic_sqrt/cordic_sqrt.v",
+            "cordic_sqrt/cordic_sqrt_define.vh",
+            "cordic_sqrt/cordic_sqrt_tmpl.vhd"
+        ],
+        "external_testbench_testbench": [
+            "cordic_sqrt/Testbench/tb_sqrt.v",
+            "cordic_sqrt/Testbench/run.sh",
+            "cordic_sqrt/Testbench/run.bat",
+            "cordic_sqrt/Testbench/cordic_sqrt.v",
+            "cordic_sqrt/Testbench/cordic_sqrt_define.vh"
+        ],
+        "external_script_generator": []
+    },
+    "sw_version": "2024.2.294",
+    "generated_date": "2025-04-18T04:35:52.501938+00:00"
+}
