@@ -1,28 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<efx:project name="rah" description="" last_change="1738413708" sw_version="2023.2.307" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
+<efx:project name="calcx" description="" last_change="1746596908" sw_version="2024.2.294" last_run_state="pass" last_run_flow="bitstream" config_result_in_sync="true" design_ood="sync" place_ood="sync" route_ood="sync" xmlns:efx="http://www.efinixinc.com/enf_proj" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.efinixinc.com/enf_proj enf_proj.xsd">
     <efx:device_info>
         <efx:family name="Trion"/>
         <efx:device name="T120F324"/>
         <efx:timing_model name="C3"/>
     </efx:device_info>
-    <efx:design_info def_veri_version="verilog_2k" def_vhdl_version="vhdl_2008">
+    <efx:design_info def_veri_version="verilog_2k" def_vhdl_version="vhdl_2008" unified_flow="false">
         <efx:top_module name="top"/>
         <efx:design_file name="rtl/rah/rtl/rah_encoder.v" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/data_aligner.v" version="default" library="default"/>
         <efx:design_file name="rtl/rah/rtl/video_gen.v" version="default" library="default"/>
-        <efx:design_file name="rtl/top.v" version="default" library="default"/>
         <efx:design_file name="rtl/rah/rtl/example.v" version="default" library="default"/>
-        <efx:design_file name="rtl/rah/rtl/rah_var_defs.vh" version="default" library="default"/>
-        <efx:design_file name="rtl/rah/rtl/rah_decoder.v" version="default" library="default"/>
         <efx:design_file name="rtl/rah/rtl/uart.v" version="default" library="default"/>
         <efx:design_file name="rtl/rah/rtl/rrq.v" version="default" library="default"/>
-        <efx:design_file name="rtl/rah/rtl/data_aligner.v" version="default" library="default"/>
         <efx:design_file name="rtl/rah/rtl/rah_version_check.v" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/rah_decoder.v" version="default" library="default"/>
+        <efx:design_file name="rtl/top.v" version="default" library="default"/>
+        <efx:design_file name="rtl/f_to_f/rtl/float_to_fix/f_to_f.v" version="default" library="default"/>
+        <efx:design_file name="rtl/f_to_f/rtl/float_to_fix/collector.v" version="default" library="default"/>
+        <efx:design_file name="rtl/f_to_f/rtl/float_to_fix/fixed_to_float.v" version="default" library="default"/>
+        <efx:design_file name="rtl/f_to_f/rtl/float_to_fix/dout.v" version="default" library="default"/>
+        <efx:design_file name="rtl/f_to_f/rtl/float_to_fix/float_to_fixed.v" version="default" library="default"/>
+        <efx:design_file name="rtl/square_root/rtl/isr/collector.v" version="default" library="default"/>
+        <efx:design_file name="rtl/square_root/rtl/isr/isr.v" version="default" library="default"/>
+        <efx:design_file name="rtl/square_root/rtl/isr/dout.v" version="default" library="default"/>
+        <efx:design_file name="rtl/square_root/rtl/isr/top.v" version="default" library="default"/>
+        <efx:design_file name="rtl/divider/rtl/top_module.v" version="default" library="default"/>
+        <efx:design_file name="rtl/divider/rtl/rah_cont_meta_stable.v" version="default" library="default"/>
+        <efx:design_file name="rtl/divider/rtl/divider_mode_cont.v" version="default" library="default"/>
+        <efx:design_file name="rtl/cordic/rtl/cordic_mode_controller.v" version="default" library="default"/>
+        <efx:design_file name="rtl/rah/rtl/rah_var_defs.vh" version="default" library="default"/>
+        <efx:design_file name="rtl/calc/rtl/alu.v" version="default" library="default"/>
+        <efx:design_file name="rtl/calc/rtl/collector.v" version="default" library="default"/>
+        <efx:design_file name="rtl/calc/rtl/dout.v" version="default" library="default"/>
+        <efx:design_file name="rtl/calc/rtl/calc.v" version="default" library="default"/>
         <efx:top_vhdl_arch name=""/>
     </efx:design_info>
     <efx:constraint_info>
         <efx:sdc_file name="rtl/constraints.sdc"/>
         <efx:inter_file name=""/>
     </efx:constraint_info>
+    <efx:isf_info/>
     <efx:sim_info/>
     <efx:misc_info/>
     <efx:ip_info>
@@ -31,6 +49,36 @@
         </efx:ip>
         <efx:ip instance_name="synchronous_fifo" path="ip/synchronous_fifo/settings.json">
             <efx:ip_src_file name="synchronous_fifo.v"/>
+        </efx:ip>
+        <efx:ip instance_name="cordic_sinh_cosh" path="ip/cordic_sinh_cosh/settings.json">
+            <efx:ip_src_file name="cordic_sinh_cosh.v"/>
+        </efx:ip>
+        <efx:ip instance_name="cordic_tanh" path="ip/cordic_tanh/settings.json">
+            <efx:ip_src_file name="cordic_tanh.v"/>
+        </efx:ip>
+        <efx:ip instance_name="cordic_arcsin_arccos" path="ip/cordic_arcsin_arccos/settings.json">
+            <efx:ip_src_file name="cordic_arcsin_arccos.v"/>
+        </efx:ip>
+        <efx:ip instance_name="cordic_exp" path="ip/cordic_exp/settings.json">
+            <efx:ip_src_file name="cordic_exp.v"/>
+        </efx:ip>
+        <efx:ip instance_name="cordic_ln" path="ip/cordic_ln/settings.json">
+            <efx:ip_src_file name="cordic_ln.v"/>
+        </efx:ip>
+        <efx:ip instance_name="cordic_sqrt" path="ip/cordic_sqrt/settings.json">
+            <efx:ip_src_file name="cordic_sqrt.v"/>
+        </efx:ip>
+        <efx:ip instance_name="cordic_arctan" path="ip/cordic_arctan/settings.json">
+            <efx:ip_src_file name="cordic_arctan.v"/>
+        </efx:ip>
+        <efx:ip instance_name="cordic_sin_cos" path="ip/cordic_sin_cos/settings.json">
+            <efx:ip_src_file name="cordic_sin_cos.v"/>
+        </efx:ip>
+        <efx:ip instance_name="divider_unsigned" path="ip/divider_unsigned/settings.json">
+            <efx:ip_src_file name="divider_unsigned.v"/>
+        </efx:ip>
+        <efx:ip instance_name="divider_signed" path="ip/divider_signed/settings.json">
+            <efx:ip_src_file name="divider_signed.v"/>
         </efx:ip>
     </efx:ip_info>
     <efx:synthesis tool_name="efx_map">
@@ -62,18 +110,35 @@
         <efx:param name="use-logic-for-small-rom" value="64" value_type="e_integer"/>
         <efx:param name="mult_input_regs_packing" value="1" value_type="e_option"/>
         <efx:param name="mult_output_regs_packing" value="1" value_type="e_option"/>
+        <efx:param name="bram-push-tco-outreg" value="0" value_type="e_option"/>
+        <efx:param name="hdl-loop-limit" value="20000" value_type="e_integer"/>
+        <efx:param name="peri-syn-instantiation" value="0" value_type="e_option"/>
+        <efx:param name="peri-syn-inference" value="0" value_type="e_option"/>
+        <efx:param name="ram-decomp-mode" value="0" value_type="e_option"/>
+        <efx:param name="max_threads" value="-1" value_type="e_integer"/>
         <efx:param name="include" value="ip/async_fifo" value_type="e_string"/>
         <efx:param name="include" value="ip/synchronous_fifo" value_type="e_string"/>
+        <efx:param name="include" value="ip/cordic_sinh_cosh" value_type="e_string"/>
+        <efx:param name="include" value="ip/cordic_tanh" value_type="e_string"/>
+        <efx:param name="include" value="ip/cordic_arcsin_arccos" value_type="e_string"/>
+        <efx:param name="include" value="ip/cordic_exp" value_type="e_string"/>
+        <efx:param name="include" value="ip/cordic_ln" value_type="e_string"/>
+        <efx:param name="include" value="ip/cordic_sqrt" value_type="e_string"/>
+        <efx:param name="include" value="ip/cordic_arctan" value_type="e_string"/>
+        <efx:param name="include" value="ip/cordic_sin_cos" value_type="e_string"/>
+        <efx:param name="include" value="ip/divider_unsigned" value_type="e_string"/>
+        <efx:param name="include" value="ip/divider_signed" value_type="e_string"/>
     </efx:synthesis>
     <efx:place_and_route tool_name="efx_pnr">
         <efx:param name="work_dir" value="work_pnr" value_type="e_string"/>
         <efx:param name="verbose" value="off" value_type="e_bool"/>
         <efx:param name="load_delaym" value="on" value_type="e_bool"/>
-        <efx:param name="optimization_level" value="NULL" value_type="e_option"/>
+        <efx:param name="optimization_level" value="TIMING_3" value_type="e_option"/>
         <efx:param name="seed" value="1" value_type="e_integer"/>
         <efx:param name="placer_effort_level" value="2" value_type="e_option"/>
         <efx:param name="max_threads" value="-1" value_type="e_integer"/>
         <efx:param name="print_critical_path" value="10" value_type="e_integer"/>
+        <efx:param name="classic_flow" value="off" value_type="e_noarg"/>
     </efx:place_and_route>
     <efx:bitstream_generation tool_name="efx_pgm">
         <efx:param name="mode" value="active" value_type="e_string"/>

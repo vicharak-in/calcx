@@ -1,0 +1,36 @@
+{
+    "args": [
+        "-o",
+        "cordic_sin_cos",
+        "--base_path",
+        "/home/neel/Downloads/calc10/calcx/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "arithmetic",
+            "name": "efx_cordic",
+            "version": "5.1"
+        }
+    ],
+    "conf": {
+        "MODE": "1"
+    },
+    "output": {
+        "external_source_source": [
+            "cordic_sin_cos/cordic_sin_cos_tmpl.v",
+            "cordic_sin_cos/cordic_sin_cos.v",
+            "cordic_sin_cos/cordic_sin_cos_define.vh",
+            "cordic_sin_cos/cordic_sin_cos_tmpl.vhd"
+        ],
+        "external_testbench_testbench": [
+            "cordic_sin_cos/Testbench/tb_sin_cos.v",
+            "cordic_sin_cos/Testbench/run.sh",
+            "cordic_sin_cos/Testbench/run.bat",
+            "cordic_sin_cos/Testbench/cordic_sin_cos.v",
+            "cordic_sin_cos/Testbench/cordic_sin_cos_define.vh"
+        ],
+        "external_script_generator": []
+    },
+    "sw_version": "2024.2.294",
+    "generated_date": "2025-04-18T04:37:08.398167+00:00"
+}

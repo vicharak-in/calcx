@@ -1,10 +1,14 @@
-`include "rah_var_defs.vh"
+`include "rtl/rah/rtl/rah_var_defs.vh"
 
 module top (
 /* Clocks of MIPI TX and RX parallel interfaces */
     input                       rx_pixel_clk,
     input                       tx_pixel_clk,
-    input                       tx_vga_clk,
+    input                       cordic_clk,
+    input                       divider_clk,
+    input                       calc_clk,
+    input                       f_to_f_clk,
+    input                       isr_clk,
 
 /* Signals used by the MIPI RX Interface Designer instance */
     input                       my_mipi_rx_VALID,
@@ -120,21 +124,6 @@ rah_version_check #(
     .out_data       (`SET_DATA_RAH(0))
 );
 
-/* Periplex instantiation for multiplexing peripherals */
-assign rd_clk[`EXAMPLE] = rx_pixel_clk; 
-
-/* change this module as your app */
-example_recv #(
-    .RAH_PACKET_WIDTH(RAH_PACKET_WIDTH)
-) er (
-    .clk(rx_pixel_clk),
-    .data_queue_empty(data_queue_empty[`EXAMPLE]),
-    .data_queue_almost_empty(data_queue_almost_empty[`EXAMPLE]),
-    .request_data(request_data[`EXAMPLE]),
-    .data_frame(`GET_DATA_RAH(`EXAMPLE)),
-    .uart_tx_pin(uart_tx_pin)
-);
-
 /* Send data to processor */
 wire [TOTAL_APPS-1:0] wr_clk;
 wire [(TOTAL_APPS*RAH_PACKET_WIDTH)-1:0] wr_data;
@@ -142,9 +131,6 @@ wire [TOTAL_APPS-1:0] write_apps_data;
 wire [TOTAL_APPS-1:0] wr_fifo_full;
 wire [TOTAL_APPS-1:0] wr_almost_fifo_full;
 wire [TOTAL_APPS-1:0] wr_prog_fifo_full;
-
-wire vid_gen_clk;
-assign vid_gen_clk = tx_vga_clk;
 
 wire mipi_out_rst;
 wire mipi_valid;
@@ -159,7 +145,6 @@ rah_encoder #(
     .DATA_WIDTH(RAH_PACKET_WIDTH)
 ) re (
     .clk                    (tx_pixel_clk),
-    .vid_gen_clk            (vid_gen_clk),
 
     .send_data              (write_apps_data),
     .wr_clk                 (wr_clk),
@@ -176,16 +161,86 @@ rah_encoder #(
     .vsync_patgen           (vsync)
 );
 
-assign wr_clk[`EXAMPLE] = tx_pixel_clk;
+assign rd_clk[`CORDDIC] = cordic_clk; 
+assign wr_clk[`CORDDIC] = cordic_clk;
 
-/* Include your module */
-example_trans #(
-    .RAH_PACKET_WIDTH(RAH_PACKET_WIDTH)
-) et (
-    .clk            (tx_pixel_clk),
-    .uart_rx_pin    (uart_rx_pin),
-    .data           (`SET_DATA_RAH(`EXAMPLE)),
-    .send_data      (write_apps_data[`EXAMPLE])
+cordic_mode_controller calc (
+    .clk            (cordic_clk), 
+    .Cor_in_data    (`GET_DATA_RAH(`CORDDIC)),
+    .empty          (data_queue_empty[`CORDDIC]),
+    .RD_en          (request_data[`CORDDIC]),
+    .wr_en          (write_apps_data[`CORDDIC]),
+    .wr_data        (`SET_DATA_RAH(`CORDDIC))
+);
+
+assign rd_clk[`DIVIDER_UNSIGNED] = rx_pixel_clk; 
+assign wr_clk[`DIVIDER_UNSIGNED] = divider_clk;
+
+/* change this module as your app */
+top_module #(
+    .SIGNED (0)
+) tmu (
+    .clk            (rx_pixel_clk),
+    .divider_clk    (divider_clk),
+    .data           (`GET_DATA_RAH(`DIVIDER_UNSIGNED)),
+    .empty          (data_queue_empty[`DIVIDER_UNSIGNED]),
+    .RD_en          (request_data[`DIVIDER_UNSIGNED]),
+    .wr_en          (write_apps_data[`DIVIDER_UNSIGNED]),
+    .wr_data        (`SET_DATA_RAH(`DIVIDER_UNSIGNED)),
+    .almost_empty   (data_queue_almost_empty[`DIVIDER_UNSIGNED])
+);
+   
+assign rd_clk[`DIVIDER_SIGNED] = rx_pixel_clk; 
+assign wr_clk[`DIVIDER_SIGNED] = divider_clk;
+
+top_module #(
+    .SIGNED (1)
+) tms (
+    .clk            (rx_pixel_clk),
+    .divider_clk    (divider_clk),
+    .data           (`GET_DATA_RAH(`DIVIDER_SIGNED)),
+    .empty          (data_queue_empty[`DIVIDER_SIGNED]),
+    .RD_en          (request_data[`DIVIDER_SIGNED]),
+    .wr_en          (write_apps_data[`DIVIDER_SIGNED]),
+    .wr_data        (`SET_DATA_RAH(`DIVIDER_SIGNED)),
+    .almost_empty   (data_queue_almost_empty[`DIVIDER_SIGNED])
+);
+
+assign rd_clk[`F_TO_F] = f_to_f_clk;
+assign wr_clk[`F_TO_F] = f_to_f_clk;
+
+f_to_f uff (
+    .clk         (f_to_f_clk),
+    .datain      (`GET_DATA_RAH(`F_TO_F)),
+    .dataout     (`SET_DATA_RAH(`F_TO_F)),
+    .rstn        (1'b1),
+    .empty       (data_queue_empty[`F_TO_F]),
+    .rden        (request_data[`F_TO_F]),
+    .wren        (write_apps_data[`F_TO_F])
+);
+
+assign rd_clk[`ISR] = isr_clk;
+assign wr_clk[`ISR] = isr_clk;
+
+i_s_r uisr (
+    .clk     (isr_clk),
+    .datain  (`GET_DATA_RAH(`ISR)),
+    .dataout (`SET_DATA_RAH(`ISR)),
+    .empty   (data_queue_empty[`ISR]),
+    .rden    (request_data[`ISR]),
+    .wren    (write_apps_data[`ISR])
+);
+
+assign rd_clk[`CALC] = calc_clk;
+assign wr_clk[`CALC] = calc_clk;
+
+calc uc (
+    .clk     (calc_clk),
+    .datain  (`GET_DATA_RAH(`CALC)),
+    .dataout (`SET_DATA_RAH(`CALC)),
+    .empty   (data_queue_empty[`CALC]),
+    .rden    (request_data[`CALC]),
+    .wren    (write_apps_data[`CALC])
 );
 
 assign my_mipi_tx_DPHY_RSTN = ~mipi_out_rst;

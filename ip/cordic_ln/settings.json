@@ -1,0 +1,36 @@
+{
+    "args": [
+        "-o",
+        "cordic_ln",
+        "--base_path",
+        "/home/neel/Downloads/calc10/calcx/ip",
+        "--vlnv",
+        {
+            "vendor": "efinixinc.com",
+            "library": "arithmetic",
+            "name": "efx_cordic",
+            "version": "5.1"
+        }
+    ],
+    "conf": {
+        "MODE": "7"
+    },
+    "output": {
+        "external_source_source": [
+            "cordic_ln/cordic_ln_tmpl.v",
+            "cordic_ln/cordic_ln.v",
+            "cordic_ln/cordic_ln_define.vh",
+            "cordic_ln/cordic_ln_tmpl.vhd"
+        ],
+        "external_testbench_testbench": [
+            "cordic_ln/Testbench/tb_ln.v",
+            "cordic_ln/Testbench/run.sh",
+            "cordic_ln/Testbench/run.bat",
+            "cordic_ln/Testbench/cordic_ln.v",
+            "cordic_ln/Testbench/cordic_ln_define.vh"
+        ],
+        "external_script_generator": []
+    },
+    "sw_version": "2024.2.294",
+    "generated_date": "2025-04-18T04:35:32.464687+00:00"
+}
